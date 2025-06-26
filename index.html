@@ -1,21 +1,105 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Générateur ASCII Art</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EnglishPassion - Free Trainer</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0d0d0d;
+      font-family: 'Segoe UI', sans-serif;
+      color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    .card {
+      background: #1a1a1a;
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 0 15px #03a9f4;
+      max-width: 90%;
+    }
+
+    h1 {
+      color: #03a9f4;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    button {
+      background-color: #03a9f4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0288d1;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: #888;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Générateur ASCII Art</h1>
-        <input type="text" id="textInput" placeholder="Tape ton texte...">
-        <select id="fontSelect"></select>
-        <button onclick="generateAscii()">Générer</button>
-        <pre id="asciiOutput"></pre>
-        <button onclick="copyToClipboard()">Copier</button>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/figlet/1.2.4/figlet.min.js"></script>
-    <script src="script.js"></script>
+  <div class="card">
+    <h1>🇬🇧 EnglishPassion Trainer</h1>
+    <p id="question">Loading question...</p>
+    <button onclick="generate()">🔁 New Question</button>
+    <button onclick="showAnswer()">👁 Show Answer</button>
+    <p id="answer" class="hidden"></p>
+    <footer>Connexion gratuite via <strong>englishpassion.bf</strong></footer>
+  </div>
+
+  <script>
+    const questions = [
+      { q: "🇫🇷 Traduis : 'Je suis fatigué.'", a: "I am tired." },
+      { q: "❓ Past tense of 'go'?", a: "Went" },
+      { q: "🇫🇷 Traduis : 'Elle aime la musique.'", a: "She likes music." },
+      { q: "🧠 What's the plural of 'child'?", a: "Children" },
+      { q: "🇫🇷 Traduis : 'Nous avons mangé.'", a: "We ate." },
+      { q: "❓ Past participle of 'take'?", a: "Taken" },
+      { q: "🇬🇧 Complete: 'I have never ___ to London.'", a: "been" },
+      { q: "❓ Which is a noun: 'run', 'beautiful', 'happiness'?", a: "Happiness" },
+      { q: "🇫🇷 Traduis : 'Ils jouent au football.'", a: "They play football." },
+      { q: "🧠 Opposite of 'easy'?", a: "Hard / Difficult" }
+    ];
+
+    function generate() {
+      const random = questions[Math.floor(Math.random() * questions.length)];
+      document.getElementById('question').textContent = random.q;
+      document.getElementById('answer').textContent = random.a;
+      document.getElementById('answer').classList.add('hidden');
+    }
+
+    function showAnswer() {
+      document.getElementById('answer').classList.remove('hidden');
+    }
+
+    // Auto-génération au chargement
+    generate();
+  </script>
 </body>
 </html>
